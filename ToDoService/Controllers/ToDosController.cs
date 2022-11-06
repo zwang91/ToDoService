@@ -10,7 +10,7 @@ namespace ToDoService.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ToDoItemController : ControllerBase
+    public class ToDosController : ControllerBase
     {
         private static long currentId = 0;
         private static long thorwExceptionIndex = 0;
