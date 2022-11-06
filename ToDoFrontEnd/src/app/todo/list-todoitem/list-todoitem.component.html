@@ -33,9 +33,9 @@
             {{todoItem.isDone}}
         </td>
         <td>
-            <button (click)="updateTodoItem(todoItem.id)">Update</button>
-            <button (click)="deleteTodoItem(todoItem.id)">Delete</button>
-            <button (click)="selectTodoItem(todoItem.id)">Detail</button>
+            <button (click)="update(todoItem.id)">Update</button>
+            <button (click)="detail(todoItem.id)">Detail</button>
+            <button (click)="doDelete(todoItem.id)">Delete</button>
         </td>
     </tr>
 </table>

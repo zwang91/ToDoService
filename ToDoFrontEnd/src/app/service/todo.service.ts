@@ -6,48 +6,41 @@ import { TodoStoreService } from './todo-store.service';
   providedIn: 'root'
 })
 export class TodoService {
-  
-  public updatingToDoItem: ToDoItem;
-  public selectedTodoItem: ToDoItem;
-  private currentId: number = 0;
 
-  private _todoItems: Array<ToDoItem>;
-
+  private _selectedTodoItem: ToDoItem = {} as ToDoItem;
+  private _updatingTodoItem: ToDoItem = {} as ToDoItem;
   constructor(private todoStore: TodoStoreService) {
-    this._todoItems = todoStore.GetAll();
-    this.updatingToDoItem = new ToDoItem(-1, "", "", false);
-    this.selectedTodoItem = new ToDoItem(-1, "", "", false);
-    this.currentId = this.todoItems.length;
   }
 
   public get todoItems(): Array<ToDoItem> {
-    return this.todoStore.GetAll();
+    return this.todoStore.getAll();
   }
 
-  public SetUpdatingTodoItemId(id: number): void {
-    const foundTodoItem = this.todoStore.FindById(id);
-    
-    if (foundTodoItem !== undefined) {
-      this.updatingToDoItem = Object.assign({}, foundTodoItem);
-    }
+  public create(todoItem: ToDoItem): void {
+    this.todoStore.create(todoItem);
   }
 
-  public Create(todoItem: ToDoItem) {
-    todoItem.id = this.currentId;
-    var newTodoItem = Object.assign({}, todoItem);
-    this.todoStore.Create(newTodoItem);
-    this.currentId++;
+  public update(updateTodoItem: ToDoItem): void {
+    this.todoStore.update(updateTodoItem);
   }
 
-  public UpdateTodoItem(updateTodoItems: ToDoItem): void {
-    this.todoStore.Update(updateTodoItems);
+  public delete(id: number): void {
+    this.todoStore.delete(id);
   }
 
-  public DeleteTodoItem(id: number):void{   
-    this.todoStore.Delete(id); 
+  public selectTodoItem(id: number): void {
+    this._selectedTodoItem = this.todoStore.findById(id);
   }
 
-  public SetSelectedTodoItemId(id: number):void{
-    this.selectedTodoItem = this.todoStore.FindById(id);
+  public selectTodoItemForUpdate(id: number): void {
+    this._updatingTodoItem = Object.assign({}, this.todoStore.findById(id));
+  }
+
+  public currentTodoItem(): ToDoItem {
+    return this._selectedTodoItem;
+  }
+
+  public currentUpdatingTodoItem(): ToDoItem {
+    return this._updatingTodoItem;
   }
 }

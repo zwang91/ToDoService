@@ -5,45 +5,51 @@ import { ToDoItem } from '../model/ToDoItem';
   providedIn: 'root'
 })
 export class TodoStoreService {
-  private _todoItems: Array<ToDoItem>;
+  private readonly _todoItems: Array<ToDoItem>;
+
   constructor() {
     this._todoItems = new Array<ToDoItem>();
-    this._todoItems.push(new ToDoItem(0, "Task1", "Task1 description", false));
-    this._todoItems.push(new ToDoItem(1, "Task2", "Task2 description", false));
-    this._todoItems.push(new ToDoItem(2, "Task3", "Task3 description", false));
-    this._todoItems.push(new ToDoItem(3, "Task4", "Task4 description", false));
-    this._todoItems.push(new ToDoItem(4, "Task5", "Task5 description", false));
+    this._todoItems.push(new ToDoItem(0, 'Task1', 'Task1 description', false));
+    this._todoItems.push(new ToDoItem(1, 'Task2', 'Task2 description', false));
+    this._todoItems.push(new ToDoItem(2, 'Task3', 'Task3 description', false));
+    this._todoItems.push(new ToDoItem(3, 'Task4', 'Task4 description', false));
+    this._todoItems.push(new ToDoItem(4, 'Task5', 'Task5 description', false));
   }
 
-  public GetAll(): Array<ToDoItem> {
+  public getAll(): Array<ToDoItem> {
     return this._todoItems;
   }
 
-  public FindById(id: number): ToDoItem {
+  public findById(id: number): ToDoItem {
     let foundTodoItem = this._todoItems.find(todoItem => todoItem.id === id);
     if (foundTodoItem === undefined) {
-      foundTodoItem = new ToDoItem(-1, "", "", false);
+      foundTodoItem = new ToDoItem(-1, '', '', false);
     }
     return foundTodoItem;
   }
 
-  public Create(newTodoItem: ToDoItem): void{
-    this._todoItems.push(newTodoItem);
+  public create(todoItem: ToDoItem): void {
+    this._todoItems.push(new ToDoItem(this.generateId(),
+      todoItem.title, todoItem.description, todoItem.isDone));
   }
 
-  public Update(updateTodoItem: ToDoItem): void{
+  public update(updateTodoItem: ToDoItem): void {
     const foundTodoItem = this._todoItems.find(item => item.id === updateTodoItem.id);
     if (foundTodoItem) {
       foundTodoItem.description = updateTodoItem.description;
       foundTodoItem.isDone = updateTodoItem.isDone;
       foundTodoItem.title = updateTodoItem.title;
-    }    
+    }
   }
 
-  public Delete(id: number): void{
+  public delete(id: number): void {
     const index = this._todoItems.findIndex(item => item.id === id);
     if (index >= 0) {
       this._todoItems.splice(index, 1);
     }
+  }
+
+  private generateId() {
+    return Date.now();
   }
 }

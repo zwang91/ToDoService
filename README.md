@@ -21,19 +21,13 @@ httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
 
 ```
 function asyncData<T>(data: T) {
-  return defer(() => Promise.resolve(data));
+  return of(data);
 }
   function asyncError<T>(errorObject: any) {
-    return defer(() => Promise.reject(errorObject));
+    return throwError(() => errorObject);
   }
 ```
-###### Create HttpErrorResponse
-```
-const errorResponse = new HttpErrorResponse({
-      error: 'test 404 error',
-      status: 404, statusText: 'Not Found'
-    });
-```
+
 ##### How to create HttpHeaders
 ```
 import { HttpHeaders } from '@angular/common/http';

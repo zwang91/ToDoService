@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CreateTodoitemComponent } from './create-todoitem/create-todoitem.component';
-import { ListTodoitemComponent } from './list-todoitem/list-todoitem.component';
-import { TodoitemDetailComponent } from './todoitem-detail/todoitem-detail.component';
+import { CreateTodoitemComponent } from './todo/create-todoitem/create-todoitem.component';
+import { ListTodoitemComponent } from './todo/list-todoitem/list-todoitem.component';
+import { TodoitemDetailComponent } from './todo/todoitem-detail/todoitem-detail.component';
 import { FormsModule } from '@angular/forms';
-import { UpdateTodoItemComponent } from './update-todo-item/update-todo-item.component';
+import { UpdateTodoItemComponent } from './todo/update-todo-item/update-todo-item.component';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -16,7 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
     CreateTodoitemComponent,
     ListTodoitemComponent,
     TodoitemDetailComponent,
-    UpdateTodoItemComponent,    
+    UpdateTodoItemComponent,
   ],
   imports: [
     BrowserModule,
