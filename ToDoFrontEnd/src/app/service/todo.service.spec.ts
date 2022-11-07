@@ -43,7 +43,7 @@ describe('TodoService', () => {
   it('should response error when create fail', () => {
     // given
     const todoItem = new ToDoItem(8,'title','decription', true);
-    httpClientSpy.post.and.returnValue(throwError(()=>({errorMessage:"Created failed"})));
+    httpClientSpy.post.and.returnValue(throwError(() => ({errorMessage:"Created failed"})));
 
     // when
     service.create(todoItem);
@@ -69,12 +69,25 @@ describe('TodoService', () => {
   it('should delete todoItem via mockHttp get by id', () => {
     // given
     var id = 8;
+    httpClientSpy.delete.and.returnValue(of({}))
 
     // when
     service.delete(id);
 
     //then
     expect(httpClientSpy.delete).toHaveBeenCalledWith(
-      'https://localhost:44309/todos?id=8')
+      'https://localhost:44309/todos?id=8');
+  });
+
+  it('should response error when delete fail', () => {
+    // given
+    let id = 8;
+    httpClientSpy.delete.and.returnValue(throwError(() => ({errorMessage:"Delete failed"})));
+  
+    // when
+    service.delete(id);
+
+    //then
+    expect(service.errorMessage).toEqual("Delete failed");
   });
 });
