@@ -68,8 +68,7 @@ describe('TodoService', () => {
 
   it('should delete todoItem via mockHttp get by id', () => {
     // given
-    let id = 8;
-    var todoItem = new ToDoItem(id,'title','decription', true);
+    var id = 8;
 
     // when
     service.delete(id);
