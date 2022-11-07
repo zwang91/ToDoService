@@ -34,7 +34,7 @@ export class TodoService {
   }
 
   public update(updateTodoItem: ToDoItem): void {
-    this.todoStore.update(updateTodoItem);
+    this.todoApi.update(updateTodoItem);
   }
 
   public delete(id: number): void {

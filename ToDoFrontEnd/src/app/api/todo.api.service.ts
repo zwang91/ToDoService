@@ -22,4 +22,8 @@ export class TodoApiService {
   delete(id: number): Observable<void> {
       return this.http.delete<void>(`${this.baseApi}?id=${id}`);
     }
+  
+  update(toDoItem: ToDoItem): Observable<ToDoItem>{
+    return this.http.put<ToDoItem>(this.baseApi, toDoItem)
+  }
 }

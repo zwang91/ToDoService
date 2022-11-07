@@ -12,7 +12,7 @@ describe('TodoService', () => {
   let httpClientSpy: any;
 
   beforeEach(() => {
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['post', 'get', 'delete']);
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['post', 'get', 'delete', 'put']);
     todoStoreService = new TodoStoreService();
     TestBed.configureTestingModule({
       providers:[
@@ -89,5 +89,18 @@ describe('TodoService', () => {
 
     //then
     expect(service.errorMessage).toEqual("Delete failed");
+  });
+
+  it('should update todoItem via mockHttp put', () => {
+    // given
+    var todoItem = new ToDoItem(8,'title','decription', true);
+    httpClientSpy.put.and.returnValue(of({}))
+
+    // when
+    service.update(todoItem);
+
+    //then
+    expect(httpClientSpy.put).toHaveBeenCalledWith(
+      'https://localhost:44309/todos', todoItem);
   });
 });
