@@ -43,4 +43,8 @@ export class TodoService {
   public currentUpdatingTodoItem(): ToDoItem {
     return this._updatingTodoItem;
   }
+
+  public findById(id: string | null): ToDoItem {
+    return this.todoStore.findById(Number(id));
+  }
 }
