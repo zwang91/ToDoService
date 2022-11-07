@@ -18,4 +18,8 @@ export class TodoApiService {
     let newApi = `${this.baseApi}/${id}`;
     return this.http.get<ToDoItem>(newApi);
     }
+
+  delete(id: number): Observable<void> {
+      return this.http.delete<void>(`${this.baseApi}?id=${id}`);
+    }
 }

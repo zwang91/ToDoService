@@ -38,7 +38,7 @@ export class TodoService {
   }
 
   public delete(id: number): void {
-    this.todoStore.delete(id);
+    this.todoApi.delete(id);
   }
 
   public selectTodoItem(id: number): void {
