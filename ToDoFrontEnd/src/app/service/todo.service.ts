@@ -20,8 +20,8 @@ export class TodoService {
     return this.todoStore.getAll();
   }
 
-  findById(id: number):ToDoItem{
-    return this.todoStore.findById(id);
+  findById(id: number): Observable<ToDoItem> {
+    return this.todoApi.findById(id);
   }
 
   public create(todoItem: ToDoItem): void {

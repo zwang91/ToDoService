@@ -13,4 +13,9 @@ export class TodoApiService {
   create(toDoItem: ToDoItem): Observable<void>{
     return this.http.post<void>(this.baseApi, toDoItem);
   }
+
+  findById(id: number): Observable<ToDoItem>{
+    let newApi = `${this.baseApi}/${id}`;
+    return this.http.get<ToDoItem>(newApi);
+    }
 }
